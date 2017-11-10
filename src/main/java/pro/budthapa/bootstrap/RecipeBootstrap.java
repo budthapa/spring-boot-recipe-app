@@ -160,8 +160,10 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 				recipeCornBread));
 		ingredientList.add(new Ingredient("lime, cut into wedges", new BigDecimal(4), eachUom, recipeCornBread));
 
-		recipeCornBread.setIngredient(ingredientList);
-
+		recipeCornBread.setIngredients(ingredientList);
+		recipeCornBread.setUrl("simplyrecipes.com/corn-bread-recipe.html");
+		recipeCornBread.setServing("5");
+		
 		List<Category> categories = new ArrayList<>();
 		categories.add(americanCategory);
 		categories.add(mexicanCategory);

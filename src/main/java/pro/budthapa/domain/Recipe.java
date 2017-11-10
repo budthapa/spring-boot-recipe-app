@@ -1,6 +1,6 @@
 package pro.budthapa.domain;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -16,7 +16,6 @@ import javax.persistence.Lob;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.PrePersist;
 
 import pro.budthapa.enums.Difficulty;
 
@@ -42,7 +41,7 @@ public class Recipe {
 	private Note note;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "recipe")
-	private List<Ingredient> ingredient;
+	private List<Ingredient> ingredients = new ArrayList<>();
 
 	@Enumerated(value = EnumType.STRING)
 	private Difficulty difficulty;
@@ -127,12 +126,12 @@ public class Recipe {
 		this.note = note;
 	}
 
-	public List<Ingredient> getIngredient() {
-		return ingredient;
+	public List<Ingredient> getIngredients() {
+		return ingredients;
 	}
 
-	public void setIngredient(List<Ingredient> ingredient) {
-		this.ingredient = ingredient;
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 	public Difficulty getDifficulty() {

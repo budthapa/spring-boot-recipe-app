@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<title>Show Recipe</title>
+
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+</head>
+<body>
+	<div class="container">
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h1 class="${recipe.description}">Recipe Description</h1>
+			</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-md-3">
+						<h4>Categories:</h4>
+					</div>
+					<div class="col-md-9">
+						<ul>
+							<li th:remove="all">category one</li>
+							<li th:remove="all">category two</li>
+							<li th:each="category : ${recipe.categories}" th:text="${category.getDescription()}"></li>
+						</ul>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<h5>Prep Time:</h5>
+					</div>
+					<div class="col-md-3">
+						<p th:text="${recipe.getPrepTime()} + mins">30 Mins</p>
+					</div>
+					<div class="col-md-3">
+						<h5>Difficulty</h5>
+					</div>
+					<div class="col-md-3">
+						<p th:text="${recipe.getDifficulty()}">Easy</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<h5>Cook Time:</h5>
+					</div>
+					<div class="col-md-3">
+						<p th:text="${recipe.getCookTime()} + Min">30 Mins</p>
+					</div>
+					<div class="col-md-3">
+						<h5>Serving</h5>
+					</div>
+					<div class="col-md-3">
+						<p th:text="${recipe.serving}">4</p>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-md-3">
+						<h5>Source</h5>
+					</div>
+					<div class="col-md-3">
+						<p>Recipe source</p>
+					</div>
+					<div class="col-md-3">
+						<h5>URL</h5>
+					</div>
+					<div class="col-md-3">
+						<p th:text="${recipe.url}">URL</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="panel panel-primary">
+			<div class="panel-heading">
+				<h2 class="panel-title">Ingredients</h2>
+			</div>
+			<div class="panel-body">
+				<ul>
+					<li th:remove="all">1 cup of milk</li>
+					<li th:remove="all">1 teaspoon of sugar</li>
+					<li th:each="ingredient : ${recipe.ingredients}"
+                                        th:text="${(ingredient.getAmount() +
+                                        ' ' + ingredient.unitOfMeasure.getDescription() +
+                                        ' - ' + ingredient.getDescription())}">1 Teaspoon of Sugar</li>
+				</ul>
+			</div>
+		</div>
+		<div class="panel panel-info">
+			<div class="panel-heading">
+				<h2 class="panel-title">Directions</h2>
+			</div>
+			<div class="panel-body">
+				<p th:text="${recipe.directions}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Pellentesque diam ante, suscipit et nulla sodales, malesuada
+					blandit magna. Nulla ut ultricies metus, vitae lobortis ipsum.
+					Nulla porttitor lorem magna, sed rhoncus purus faucibus sit amet.
+					Proin imperdiet cursus felis. Sed laoreet sem eleifend cursus
+					iaculis. Nullam dictum egestas sapien, eu finibus augue
+					pellentesque eu. Sed accumsan diam vitae nisi bibendum, et vehicula
+					nibh lacinia. Donec ut nunc eu quam pulvinar dictum. Nunc egestas
+					ac libero id consequat. Ut sit amet congue felis, vel interdum
+					purus. Nunc nec dignissim tortor. Suspendisse vel massa vitae massa
+					tempor eleifend et eget urna.</p>
+			</div>
+		</div>
+		<div class="panel panel-warning">
+			<div class="panel-heading">
+				<h2 class="panel-title">Note</h2>
+			</div>
+			<div class="panel-body">
+				<p th:text="${recipe.note.getRecipeNotes()}">Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+					Pellentesque diam ante, suscipit et nulla sodales, malesuada
+					blandit magna. Nulla ut ultricies metus, vitae lobortis ipsum.
+					Nulla porttitor lorem magna, sed rhoncus purus faucibus sit amet.
+					Proin imperdiet cursus felis. Sed laoreet sem eleifend cursus
+					iaculis. Nullam dictum egestas sapien, eu finibus augue
+					pellentesque eu. Sed accumsan diam vitae nisi bibendum, et vehicula
+					nibh lacinia. Donec ut nunc eu quam pulvinar dictum. Nunc egestas
+					ac libero id consequat. Ut sit amet congue felis, vel interdum
+					purus. Nunc nec dignissim tortor. Suspendisse vel massa vitae massa
+					tempor eleifend et eget urna.</p>
+			</div>
+		</div>
+
+	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	<script
+		src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+</body>
+</html>

@@ -1,6 +1,7 @@
 package pro.budthapa.service.impl;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,6 +28,11 @@ public class RecipeServiceImpl implements RecipeService {
 	@Override
 	public Recipe saveRecive(Recipe recipe) {
 		return recipeRepository.save(recipe);
+	}
+
+	@Override
+	public Optional<Recipe> findRecipeById(Long id) {
+		return recipeRepository.findById(id);
 	}
 
 }

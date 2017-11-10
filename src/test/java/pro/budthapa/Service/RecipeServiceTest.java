@@ -1,12 +1,15 @@
 package pro.budthapa.Service;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -54,5 +57,18 @@ public class RecipeServiceTest {
 	}
 	
 	
-	
+	@Test
+	public void getReceipeByIdTest() throws Exception{
+		Recipe recipe = new Recipe();
+		recipe.setId(1L);
+		Optional<Recipe> recipeOptional = Optional.of(recipe);
+		
+		when(recipeRepository.findById(anyLong())).thenReturn(recipeOptional);
+		
+		Optional<Recipe> recipeReturned = recipeService.findRecipeById(1L);
+		
+		assertNotNull("null recipe returned",recipeReturned);
+		verify(recipeRepository, times(1)).findById(anyLong());
+		verify(recipeRepository,never()).findAll();
+	}
 }

@@ -3,34 +3,42 @@
 <head>
 <meta charset="UTF-8" />
 <title>Recipe Application</title>
-<script src="https://code.jquery.com/jquery-3.2.1.min.js"
-	th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
-<script
-	src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/js/bootstrap.min.js"
-	th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
 	th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
 </head>
 <body>
 	<div class="container">
-		<div class="table-responsive">
-			<table class="table table-hover">
-				<thead>
-					<tr>
-						<th>ID</th>
-						<th>Description</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr th:each="list : ${recipeList}">
-						<td th:text="${list.id}">ID</td>
-						<td th:text="${list.description}">Description</td>
-					</tr>
-				</tbody>
-			</table>
-			<div th:each="list : ${recipeList}"></div>
+		<div class="panel panel-info">
+			<div class="panel-heading">My Recipes</div>
+			<div class="panel-body">
+				<div class="table-responsive">
+					<table class="table table-hover">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Description</th>
+								<th>View</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr th:each="list : ${recipeList}">
+								<td th:text="${list.id}">ID</td>
+								<td th:text="${list.description}">Description</td>
+								<td><a th:href="@{/recipe/show/{id}(id=${list.id})}">View Recipe</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
 		</div>
+
 	</div>
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+		th:src="@{/webjars/jquery/3.2.1/jquery.min.js}"></script>
+	<script
+		src="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.7/js/bootstrap.min.js"
+		th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
 </body>
 </html>
